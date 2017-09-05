@@ -1,3 +1,2 @@
 # school
-School projects and such
-Míček, 2017
+School projects and such - Míček, 2017
