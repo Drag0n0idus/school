@@ -2,7 +2,7 @@
 
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, IntegerField, DateTimeField
 from wtforms.validators import DataRequired, Email, Length, EqualTo
 
 
@@ -29,5 +29,18 @@ class RegisterForm(FlaskForm):
         validators=[
             DataRequired(),
             EqualTo('password', message='Passwords must match.')
+        ]
+    )
+
+def NotNull(pocet):
+    if pocet == 0:
+        return False
+    return True
+
+class PocetKravForm(FlaskForm):
+    pocet = IntegerField(
+        'Pocet krav',
+        validators=[
+            DataRequired(),
         ]
     )

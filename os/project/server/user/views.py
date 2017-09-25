@@ -11,7 +11,7 @@ from flask_login import login_user, logout_user, login_required
 
 from project.server import bcrypt, db
 from project.server.models import User
-from project.server.user.forms import LoginForm, RegisterForm
+from project.server.user.forms import LoginForm, RegisterForm, PocetKravForm
 
 ################
 #### config ####
@@ -71,3 +71,8 @@ def logout():
 @login_required
 def members():
     return render_template('user/members.html')
+
+@user_blueprint.route('/pocetkrav', methods=['GET', 'POST'])
+def pocetkrav():
+    form=PocetKravForm()
+    return render_template('user/pocetkrav.html', form=form)
