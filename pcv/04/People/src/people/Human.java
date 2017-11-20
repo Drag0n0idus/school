@@ -5,6 +5,8 @@
  */
 package people;
 
+import java.awt.Color;
+
 /**
  * Třída Human
  * @author student
@@ -15,15 +17,23 @@ public class Human {
         MAN, WOMAN
     }
     /* Atributy třídy */
-    String name;
+    private String name;
     private int age = 20;
     private int weight = 70;
     private float height = (float) 1.80;
     private Sex sex = Sex.MAN;
+    protected Color eyes = Color.BLUE;
     
     /* Metody třídy */
+    /* Konstruktor třídy */
     public Human(String jmeno) {
         this.name = jmeno;
+    }
+    
+    public Human(String jmeno, int age, Sex sex) {
+        this.name = jmeno;
+        this.setAge(age);
+        this.setSex(sex);
     }
     
     /* Getters a Setters */
@@ -71,13 +81,14 @@ public class Human {
         return this.weight/Math.pow(this.height, 2);
     }
     
+    @Override
     public String toString() {
-        String output = "My name is " + this.name + "\n";
-        output += "I'm a " + this.sex + "\n";
-        output += "Age: " + this.age + "years old.\n";
-        output += "Height: " + this.height + "m\n";
-        output += "Weight: " + this.weight + "kg\n";
-        output += "BMI: " + this.getBMI(this.weight, this.height) + "\n";
+        String output = this.name + "[Human]";
+        /* output += "I'm a " + this.getSex() + ". \n";
+        output += "Age: " + this.getAge() + " years. \n";
+        output += "Height: " + this.getHeight() + " m. \n";
+        output += "Weight: " + this.getWeight() + " kg. \n";
+        output += "BMI: " + this.getBMI(this.getWeight(), this.getHeight()) + ". \n"; */
         return output;
     }
 }

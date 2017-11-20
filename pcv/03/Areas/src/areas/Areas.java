@@ -18,83 +18,73 @@ public class Areas {
         S, R, T, C, X;
     }
     
-    float readNumber(String text){
+    float readNumbers(String text){
         float input = -1;
         do {
             try {
                 System.out.print(text + ": ");
                 input = sc.nextFloat();
-                if (input < 0) {
+                if(input < 0)
                     System.out.println("Číslo nesmí být záporné!");
-                }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException e){
                 System.out.println("Nesprávně zadané číslo!");
             }
             sc.nextLine();
-        } while (input < 0);
+        }while(input < 0);
         return input;
     }
     
-    double getSquareArea(float a) {
-        return(Math.pow(a, 2));
+    double getSquareArea(float a){
+        return Math.pow(a, 2);
     }
     
-    double getRectArea(float a, float b) {
-        return a*b;
+    double getRectangleArea(float a, float b){
+        return (a * b);
     }
     
-    double getTriArea(float a, float b, float c) {
-        return 0;
-    }
-    
-    double getCircleArea(float r) {
-        return Math.PI*Math.pow(r, 2);
+    double getCircleArea(float a){
+        return Math.PI * (a*a);
     }
     
     void menu(){
         String optChar = "";
-        do {
-            System.out.println("Výpočet plochy geometrických tvarů");
-            System.out.println("----------------------------------");
-            System.out.println("S - Čtverec, R - Obdélník, T - Trojúhelník, C - Kruh, X - Konec");
+        do{
+            System.out.println("Výpočet plochy geometrických útvarů");
+            System.out.println("-----------------------------------");
+            System.out.println("S = čtverec, R = obdélník, T = trojúhelník, C = kruh, X = konec");
             System.out.println("Zadej volbu: ");
             optChar = sc.nextLine();
-            try {
+            try{
                 Options option = Options.valueOf(optChar.toUpperCase());
-                switch(option) {
+                switch (option){
                     case S: System.out.println("Čtverec");
-                            float a = this.readNumber("Zadej stranu a: ");
-                            System.out.printf("Plocha čtverce o straně %.2f je %.2f", a, this.getSquareArea(a));
-                            System.out.println();
+                            float a = this.readNumbers("Zadej stranu a");
+                            System.out.printf("Plocha čtvercxe o straně %.2f je %.3f\n", a, this.getSquareArea(a));
                             break;
                     case R: System.out.println("Obdélník");
-                            float ar = this.readNumber("Zadej stranu a: ");
-                            float br = this.readNumber("Zadej stranu b: ");
-                            System.out.printf("Plocha obdélníku o stranách %.2f a %.2f je %.2f", ar, br, this.getRectArea(ar, br));
-                            System.out.println();
+                            float b = this.readNumbers("Zadej stranu a");
+                            float c = this.readNumbers("Zadej stranu b");
+                            System.out.printf("Plocha obdélníku o stranách %.2f a %.2f je %.3f\n", b, c, this.getRectangleArea(b, c));
                             break;
                     case T: System.out.println("Trojúhelník");
-                            float at = this.readNumber("Zadej stranu a: ");
-                            float bt = this.readNumber("Zadej stranu b: ");
-                            float ct = this.readNumber("Zadej stranu c: ");
-                            System.out.printf("Plocha trojúhelníku o stranách %.2f, %.2f a %.2f je %.2f", at, bt, ct, this.getTriArea(at, bt, ct));
-                            System.out.println();
+                            float d = this.readNumbers("Zadej stranu");
+                            float e = this.readNumbers("Zadej výšku");
+                            System.out.printf("Plocha trojúhelníku o straně %.2f a  výšce %.2f je %.3f\n", d, e, 0.5*(d*e));
                             break;
                     case C: System.out.println("Kruh");
-                            float r = this.readNumber("Zadej poloměr kruhu: ");
-                            System.out.printf("Plocha kruhu o poloměru %.2f je %.2f", r, this.getCircleArea(r));
+                            float r = this.readNumbers("Zadej poloměr");
+                            System.out.printf("Plocha kruhu o poloměru %.2f je %.3f\n", r, this.getCircleArea(r));
                             break;
                 }
-            } catch (Exception e) {
-                System.out.printf("Chybná volba!");
+            }catch (Exception e){
+                System.out.println("Chybná volba");
             }
-        } while(!optChar.equalsIgnoreCase("X"));
+        }while(!optChar.equalsIgnoreCase("X"));
     }
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
-        menu();
+        Areas areas = new Areas();
+        areas.menu();
     }
     
 }
